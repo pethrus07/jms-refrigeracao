@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="JMS Refrigeração e Gelo">
+  <defs>
+    <linearGradient id="jmsBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset=".55" stop-color="#036aa1"/>
+      <stop offset="1" stop-color="#05111f"/>
+    </linearGradient>
+    <linearGradient id="jmsIce" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#7dd3fc"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="url(#jmsBg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="16" fill="none" stroke="#7dd3fc" stroke-opacity=".28" stroke-width="1.4"/>
+  <g stroke="url(#jmsIce)" stroke-width="2.6" stroke-linecap="round" fill="none">
+    <path d="M32 12v40M14.7 22 49.3 42M49.3 22 14.7 42"/>
+    <g stroke-width="2.2">
+      <path d="M32 18.5 27.3 13.8M32 18.5l4.7-4.7M32 45.5l-4.7 4.7M32 45.5l4.7 4.7"/>
+      <path d="m20.4 25.2-6.4-1.5M20.4 25.2l-1.7-6.4M43.6 38.8l6.4 1.5M43.6 38.8l1.7 6.4M43.6 25.2l6.4-1.5M43.6 25.2l1.7-6.4M20.4 38.8l-6.4 1.5M20.4 38.8l-1.7 6.4"/>
+    </g>
+  </g>
+  <circle cx="32" cy="32" r="4.6" fill="#05111f"/>
+  <circle cx="32" cy="32" r="2.6" fill="url(#jmsIce)"/>
+</svg>
