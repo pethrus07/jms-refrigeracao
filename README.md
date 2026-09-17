@@ -90,8 +90,8 @@ continuam com cache longo, porque não mudam.
 
 **Dados estruturados** (`<script type="application/ld+json">` no fim do `index.html`)
 Um `@graph` com quatro nós: `WebSite`, `WebPage`, `HVACBusiness`/`LocalBusiness`
-(telefone, horário, `areaServed` das 5 cidades e um catálogo com 10 ofertas) e
-`FAQPage` com as 9 perguntas.
+(telefone, `areaServed` das 5 cidades e um catálogo com 10 ofertas) e `FAQPage`
+com as 9 perguntas. Sem horário — ver o item 5 acima.
 As perguntas do `FAQPage` repetem **palavra por palavra** as que estão na tela —
 o Google exige isso, e divergir custa o rich result.
 
