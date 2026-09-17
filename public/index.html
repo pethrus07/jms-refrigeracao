@@ -27,6 +27,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
+<script>
+/* Marca que há JS ANTES da primeira pintura: é isso que autoriza o CSS a esconder
+   os blocos que entram animados. Se o main.js não assumir em 3s (falhou em carregar,
+   foi bloqueado), a marca sai e a página aparece inteira. Conteúdo comercial não
+   pode sumir por causa de animação. */
+document.documentElement.classList.add('js');
+setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classList.remove('js'); },3000);
+</script>
 </head>
 <body>
 
@@ -107,7 +115,7 @@
   <div class="wrap hero__in">
     <div class="hero__copy">
       <p class="eyebrow"><span class="dot"></span> Refrigeração e gelo para quem não pode parar</p>
-      <h1>Sua refrigeração<br><span class="grad">funcionando.</span><br>Seu gelo na hora certa.</h1>
+      <h1>Sua refrigeração<br><span class="grad">funcionando.</span><br>Seu gelo na<br>hora certa.</h1>
       <p class="lead">
         Instalação, manutenção e conserto de ar-condicionado, câmaras frias e refrigeração comercial —
         e fornecimento de gelo com entrega programada para bares, restaurantes, eventos e distribuidoras.

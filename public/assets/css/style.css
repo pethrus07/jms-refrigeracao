@@ -58,6 +58,9 @@ body{
   overflow-x:hidden;
 }
 img,svg{display:block;max-width:100%}
+/* O JS esconde contatos não preenchidos com [hidden]; sem o !important qualquer
+   `display:flex` de classe vence a regra do navegador e o item continua na tela. */
+[hidden]{display:none !important}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3{font-family:Outfit,Inter,sans-serif;line-height:1.12;letter-spacing:-.022em;font-weight:800}
@@ -215,7 +218,7 @@ p{text-wrap:pretty}
   display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:center;
   padding:78px 0 92px;
 }
-.hero h1{font-size:clamp(2.35rem,5.1vw,4rem);margin-bottom:22px}
+.hero h1{font-size:clamp(2.35rem,5.1vw,4rem);margin-bottom:22px;text-wrap:balance}
 .lead{font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--txt-light);max-width:56ch}
 .hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin:32px 0 26px}
 .hero__badges{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px 22px;margin:0}
@@ -311,7 +314,7 @@ p{text-wrap:pretty}
 .sec--contato{background:linear-gradient(180deg,var(--snow) 0%,#fff 60%)}
 
 .sec__head{max-width:730px;margin-bottom:52px}
-.sec__title{font-size:clamp(1.85rem,3.4vw,2.7rem)}
+.sec__title{font-size:clamp(1.85rem,3.4vw,2.7rem);text-wrap:balance}
 .sec__sub{margin-top:16px;font-size:1.04rem;color:var(--txt-soft);max-width:62ch}
 
 /* cards de serviço */
@@ -450,7 +453,7 @@ p{text-wrap:pretty}
   display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;
   padding:48px 0;
 }
-.band h2{font-size:clamp(1.5rem,2.8vw,2.1rem);margin-bottom:8px}
+.band h2{font-size:clamp(1.5rem,2.8vw,2.1rem);margin-bottom:8px;text-wrap:balance}
 .band p{color:rgba(255,255,255,.9);max-width:56ch}
 .band__cta{display:flex;flex-wrap:wrap;gap:12px}
 
@@ -519,7 +522,7 @@ a.info:hover{transform:translateX(4px);border-color:var(--brand)}
   position:absolute;top:-40px;right:-20px;z-index:-1;
   animation:spin 60s linear infinite;
 }
-.final h2{font-size:clamp(1.8rem,3.6vw,2.8rem);max-width:20ch;margin-inline:auto}
+.final h2{font-size:clamp(1.8rem,3.6vw,2.8rem);max-width:20ch;margin-inline:auto;text-wrap:balance}
 .final p{margin:16px auto 34px;color:var(--txt-light);max-width:56ch}
 .final__cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -529,6 +532,7 @@ a.info:hover{transform:translateX(4px);border-color:var(--brand)}
 .footer__in{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px}
 .footer__brand p{margin-top:16px;max-width:36ch;font-size:.9rem;line-height:1.6}
 .brand--footer .brand__txt strong{color:#fff}
+.brand--footer .brand__txt span{color:var(--ice)}
 .footer__social{display:flex;gap:10px;margin-top:20px}
 .footer__social a{
   width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
@@ -578,8 +582,10 @@ a.info:hover{transform:translateX(4px);border-color:var(--brand)}
 .mobile-bar__btn--wa{background:var(--wa);color:#fff}
 
 /* animação de entrada */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.reveal.is-in{opacity:1;transform:none}
+/* Só escondemos o bloco depois que o JS assumiu a revelação (classe .js na raiz).
+   Sem JS, ou se o script falhar ao carregar, tudo aparece normalmente. */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .reveal.is-in{opacity:1;transform:none}
 
 /* ---------- responsivo ---------- */
 @media (max-width:1040px){
@@ -638,7 +644,7 @@ a.info:hover{transform:translateX(4px);border-color:var(--brand)}
 @media (prefers-reduced-motion:reduce){
   html:focus-within{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none}
 }
 
 @media print{

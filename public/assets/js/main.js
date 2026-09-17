@@ -188,13 +188,25 @@
 
   /* ---------------------------------------------------------------
      8. Entrada dos blocos ao rolar
+
+     O CSS só esconde .reveal quando a raiz tem a classe .js, que é
+     adicionada aqui. Se este script não rodar, o site aparece inteiro
+     — conteúdo de página comercial não pode depender de animação.
+
+     A margem do observador é em PIXELS, não em %: em tela muito alta
+     uma margem percentual vira centenas de pixels e blocos legítimos
+     deixam de ser revelados.
      --------------------------------------------------------------- */
   (function () {
+    var raiz = document.documentElement;
     var alvos = $$('.reveal');
-    if (!alvos.length) return;
 
-    if (!('IntersectionObserver' in window)) {
-      alvos.forEach(function (el) { el.classList.add('is-in'); });
+    // Avisa o script do <head> que a revelação tem dono (ele desiste do plano B).
+    window.__jmsReveal = true;
+
+    var reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!alvos.length || reduzido || !('IntersectionObserver' in window)) {
+      raiz.classList.remove('js'); // sem animação: tudo visível de uma vez
       return;
     }
 
@@ -204,13 +216,26 @@
         e.target.classList.add('is-in');
         io.unobserve(e.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0 });
 
     alvos.forEach(function (el, i) {
       // escalona os itens de uma mesma linha para a entrada não ser em bloco
       el.style.transitionDelay = (i % 4) * 70 + 'ms';
       io.observe(el);
     });
+
+    // Rede de segurança: o que já estiver na tela e continuar escondido
+    // depois de 2s aparece de qualquer jeito.
+    setTimeout(function () {
+      var alturaTela = window.innerHeight || 800;
+      alvos.forEach(function (el) {
+        if (el.classList.contains('is-in')) return;
+        if (el.getBoundingClientRect().top < alturaTela) {
+          el.classList.add('is-in');
+          io.unobserve(el);
+        }
+      });
+    }, 2000);
   })();
 
   /* ---------------------------------------------------------------

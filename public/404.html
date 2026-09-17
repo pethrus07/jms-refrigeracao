@@ -10,6 +10,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
+<script>
+/* Marca que há JS ANTES da primeira pintura: é isso que autoriza o CSS a esconder
+   os blocos que entram animados. Se o main.js não assumir em 3s (falhou em carregar,
+   foi bloqueado), a marca sai e a página aparece inteira. Conteúdo comercial não
+   pode sumir por causa de animação. */
+document.documentElement.classList.add('js');
+setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classList.remove('js'); },3000);
+</script>
 <style>
   .erro{min-height:100dvh;display:grid;place-items:center;text-align:center;background:var(--ink);color:#fff;
     background-image:radial-gradient(700px 400px at 50% 0%,rgba(14,165,233,.35),transparent 65%)}
