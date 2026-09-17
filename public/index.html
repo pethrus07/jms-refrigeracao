@@ -3,33 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>JMS Refrigeração e Gelo — Ar-condicionado, refrigeração comercial e fornecimento de gelo</title>
-<meta name="description" content="Instalação, manutenção e conserto de ar-condicionado, câmaras frias e refrigeração comercial. Fornecimento de gelo em cubo, escama e barra com entrega programada. Orçamento sem compromisso pelo WhatsApp.">
-<meta name="theme-color" content="#05111F">
+
+<!-- ===== SEO =====================================================
+     A cidade está escrita no título, na descrição e no canonical de
+     propósito: o Google precisa ler isso no HTML, então este trecho
+     NÃO é gerado pelo config.js. Ao mudar de cidade, mude aqui também.
+     ============================================================== -->
+<title>Ar-condicionado e Gelo em João Pessoa e Bayeux | JMS Refrigeração</title>
+<meta name="description" content="Instalação, manutenção e conserto de ar-condicionado, refrigeração comercial e câmaras frias em João Pessoa, Bayeux e região. Gelo em cubo, escama e barra com entrega. Orçamento no WhatsApp.">
 <meta name="author" content="JMS Refrigeração e Gelo">
-<!-- ATENÇÃO: remover a linha abaixo quando os dados reais entrarem no config.js.
-     Enquanto o telefone for o de exemplo, o site não pode ser indexado. -->
-<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#05111F">
 <link rel="canonical" href="https://jms-refrigeracao.desbravando-utv.workers.dev/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="JMS Refrigeração e Gelo">
-<meta property="og:title" content="JMS Refrigeração e Gelo — sua refrigeração funcionando, seu gelo na hora certa">
-<meta property="og:description" content="Ar-condicionado, refrigeração comercial, câmaras frias e fornecimento de gelo com entrega programada. Orçamento sem compromisso.">
+<meta property="og:title" content="Ar-condicionado e Gelo em João Pessoa e Bayeux | JMS Refrigeração">
+<meta property="og:description" content="Refrigeração comercial, ar-condicionado, câmaras frias e fornecimento de gelo com entrega programada em João Pessoa, Bayeux e região.">
 <meta property="og:url" content="https://jms-refrigeracao.desbravando-utv.workers.dev/">
 <meta property="og:image" content="https://jms-refrigeracao.desbravando-utv.workers.dev/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="JMS Refrigeração e Gelo — sua refrigeração funcionando, seu gelo na hora certa.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ar-condicionado e Gelo em João Pessoa e Bayeux | JMS Refrigeração">
+<meta name="twitter:description" content="Refrigeração comercial, ar-condicionado, câmaras frias e gelo com entrega programada em João Pessoa, Bayeux e região.">
+<meta name="twitter:image" content="https://jms-refrigeracao.desbravando-utv.workers.dev/assets/img/og.png">
 
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap">
+<!-- A fonte do título é o maior elemento da primeira tela (LCP). Auto-hospedada
+     e pré-carregada, ela não depende de dois DNS externos para o texto aparecer. -->
+<link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
+
 <script>
 /* Marca que há JS ANTES da primeira pintura: é isso que autoriza o CSS a esconder
    os blocos que entram animados. Se o main.js não assumir em 3s (falhou em carregar,
@@ -78,7 +88,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
   <div class="wrap topbar__in">
     <p class="topbar__item"><svg class="ic"><use href="#i-clock"/></svg> <span data-jms="horario">Seg a Sáb, 7h às 18h</span> <em>· urgência fora do horário</em></p>
     <div class="topbar__right">
-      <a class="topbar__item" href="#" data-jms-link="tel"><svg class="ic"><use href="#i-phone"/></svg> <span data-jms="telefone">(00) 0000-0000</span></a>
+      <a class="topbar__item topbar__item--num" href="#" data-wa=""><svg class="ic"><use href="#i-whatsapp"/></svg> <span data-jms="whatsapp">(83) 99300-8384</span></a>
       <a class="topbar__item topbar__item--wa" href="#" data-wa="Olá! Vim pelo site da JMS e gostaria de falar com um atendente."><svg class="ic"><use href="#i-whatsapp"/></svg> Chamar no WhatsApp</a>
     </div>
   </div>
@@ -96,7 +106,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
       <a href="#refrigeracao">Refrigeração</a>
       <a href="#gelo">Gelo</a>
       <a href="#segmentos">Para quem</a>
-      <a href="#como-funciona">Como funciona</a>
+      <a href="#cobertura">Onde atendemos</a>
       <a href="#faq">Dúvidas</a>
       <a href="#contato">Contato</a>
       <a class="btn btn--wa btn--sm nav__cta" href="#" data-wa="Olá! Vim pelo site da JMS e quero solicitar um orçamento."><svg class="ic"><use href="#i-whatsapp"/></svg> Orçamento no WhatsApp</a>
@@ -117,11 +127,12 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="wrap hero__in">
     <div class="hero__copy">
-      <p class="eyebrow"><span class="dot"></span> Refrigeração e gelo para quem não pode parar</p>
+      <p class="eyebrow"><span class="dot"></span> Refrigeração e gelo em João Pessoa e Bayeux</p>
       <h1>Sua refrigeração<br><span class="grad">funcionando.</span><br>Seu gelo na<br>hora certa.</h1>
       <p class="lead">
-        Instalação, manutenção e conserto de ar-condicionado, câmaras frias e refrigeração comercial —
-        e fornecimento de gelo com entrega programada para bares, restaurantes, eventos e distribuidoras.
+        Instalação, manutenção e conserto de ar-condicionado, câmaras frias e refrigeração comercial
+        em João Pessoa, Bayeux e região — e fornecimento de gelo com entrega programada para bares,
+        restaurantes, eventos e distribuidoras.
       </p>
 
       <div class="hero__cta">
@@ -140,7 +151,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
       </ul>
 
       <p class="hero__micro">
-        Resposta rápida pelo WhatsApp · Atendemos <span data-jms="cidade">Sua Cidade</span> e região
+        Resposta rápida pelo WhatsApp · <span data-jms="whatsapp">(83) 99300-8384</span>
       </p>
     </div>
 
@@ -157,7 +168,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
           </label>
           <label class="field">
             <span>WhatsApp</span>
-            <input type="tel" name="fone" required autocomplete="tel" inputmode="numeric" placeholder="(00) 00000-0000" data-mask="fone">
+            <input type="tel" name="fone" required autocomplete="tel" inputmode="numeric" placeholder="(83) 99999-0000" data-mask="fone">
           </label>
           <label class="field">
             <span>Do que você precisa?</span>
@@ -202,7 +213,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
     <header class="sec__head reveal">
       <p class="eyebrow eyebrow--dark"><span class="dot"></span> Serviços de refrigeração</p>
       <h2 class="sec__title">Do split da sala à câmara fria do seu negócio</h2>
-      <p class="sec__sub">Atendemos residências, comércios e indústrias com equipe técnica própria, peças de procedência e serviço documentado.</p>
+      <p class="sec__sub">Atendemos residências, comércios e indústrias em João Pessoa, Bayeux e região, com equipe técnica própria, peças de procedência e serviço documentado.</p>
     </header>
 
     <div class="grid grid--3">
@@ -290,7 +301,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
     </div>
     <div class="band__cta">
       <a class="btn btn--cta btn--lg" href="#" data-wa="URGÊNCIA: meu equipamento parou e preciso de atendimento."><svg class="ic"><use href="#i-alert"/></svg> Atendimento de urgência</a>
-      <a class="btn btn--ghost-light btn--lg" href="#" data-jms-link="tel"><svg class="ic"><use href="#i-phone"/></svg> <span data-jms="telefone">(00) 0000-0000</span></a>
+      <a class="btn btn--ghost-light btn--lg" href="#" data-wa="Olá! Vim pelo site da JMS e quero falar com um atendente."><svg class="ic"><use href="#i-whatsapp"/></svg> <span data-jms="whatsapp">(83) 99300-8384</span></a>
     </div>
   </div>
 </section>
@@ -301,7 +312,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
     <header class="sec__head reveal">
       <p class="eyebrow eyebrow--dark"><span class="dot"></span> Fábrica e distribuição de gelo</p>
       <h2 class="sec__title">Gelo que chega no horário — e no ponto certo</h2>
-      <p class="sec__sub">Produção com água tratada, embalagem lacrada e transporte adequado. Pedido avulso, entrega programada ou volume para evento.</p>
+      <p class="sec__sub">Produção com água tratada, embalagem lacrada e transporte adequado. Pedido avulso, entrega programada ou volume para evento, em João Pessoa, Bayeux e região.</p>
     </header>
 
     <div class="grid grid--4">
@@ -423,8 +434,8 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
           Aqui é o mesmo contato, a mesma equipe e a mesma responsabilidade.
         </p>
         <div class="split__cta">
-          <a class="btn btn--cta btn--lg" href="#contato">Falar com a JMS <svg class="ic"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn--line btn--lg" href="#" data-wa="Olá! Quero conhecer os serviços da JMS."><svg class="ic"><use href="#i-whatsapp"/></svg> WhatsApp</a>
+          <a class="btn btn--cta btn--lg" href="#" data-wa="Olá! Quero conhecer os serviços da JMS.">Falar com a JMS <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--line btn--lg" href="#" data-wa="Olá! Quero fazer um pedido de gelo."><svg class="ic"><use href="#i-cube"/></svg> Pedir gelo</a>
         </div>
       </div>
 
@@ -451,6 +462,35 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
   </div>
 </section>
 
+<!-- ===== COBERTURA (SEO local) ===== -->
+<section class="sec sec--dark" id="cobertura">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="eyebrow"><span class="dot"></span> Onde atendemos</p>
+      <h2 class="sec__title">João Pessoa, Bayeux e toda a região</h2>
+      <p class="sec__sub">
+        Serviço de refrigeração e entrega de gelo na Grande João Pessoa. A rota de entrega e a
+        agenda técnica cobrem a capital e os municípios vizinhos — e, se o seu endereço estiver
+        um pouco além, pergunte: quase sempre dá para encaixar.
+      </p>
+    </header>
+
+    <ul class="segs" id="cidades-lista">
+      <li class="reveal">João Pessoa</li>
+      <li class="reveal">Bayeux</li>
+      <li class="reveal">Santa Rita</li>
+      <li class="reveal">Cabedelo</li>
+      <li class="reveal">Conde</li>
+    </ul>
+
+    <p class="segs__cta reveal">
+      Está fora dessa lista?
+      <a href="#" data-wa="Olá! Queria confirmar se vocês atendem na minha região.">Confirme sua região no WhatsApp</a>
+      — a resposta sai na hora.
+    </p>
+  </div>
+</section>
+
 <!-- ===== FAQ ===== -->
 <section class="sec" id="faq">
   <div class="wrap wrap--narrow">
@@ -473,7 +513,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
         <div class="faq__body"><p>Depende do uso e do ambiente. Em residência, a recomendação usual é a cada 6 meses. Em comércio, cozinha, academia ou ambiente com muita poeira, o intervalo cai bastante. Na primeira visita avaliamos o seu caso e sugerimos a frequência certa.</p></div>
       </details>
       <details class="faq__item reveal">
-        <summary>Meu equipamento é de outra marca / foi instalado por outra empresa. Vocês assumem?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <summary>Meu equipamento é de outra marca ou foi instalado por outra empresa. Vocês assumem?<svg class="ic"><use href="#i-plus"/></svg></summary>
         <div class="faq__body"><p>Sim. Avaliamos o equipamento como ele está, apontamos o que foi feito fora do padrão e orçamos a correção. Se o conserto não compensar frente à troca, dizemos isso com franqueza.</p></div>
       </details>
       <details class="faq__item reveal">
@@ -483,6 +523,10 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
       <details class="faq__item reveal">
         <summary>Quanto gelo eu preciso para o meu evento?<svg class="ic"><use href="#i-plus"/></svg></summary>
         <div class="faq__body"><p>A conta muda conforme número de convidados, duração, clima e tipo de bebida servida. Nos diga esses quatro dados e a gente calcula o volume recomendado — com margem de segurança e possibilidade de reposição.</p></div>
+      </details>
+      <details class="faq__item reveal">
+        <summary>Vocês atendem em Bayeux e nas cidades vizinhas a João Pessoa?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <div class="faq__body"><p>Sim. A operação cobre João Pessoa, Bayeux e os municípios da Grande João Pessoa, tanto para serviço técnico quanto para entrega de gelo. Se o seu endereço estiver um pouco além da lista do site, pergunte no WhatsApp — muitas vezes conseguimos encaixar na rota.</p></div>
       </details>
       <details class="faq__item reveal">
         <summary>Como funciona o contrato de manutenção preventiva?<svg class="ic"><use href="#i-plus"/></svg></summary>
@@ -519,7 +563,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
           </label>
           <label class="field">
             <span>WhatsApp *</span>
-            <input type="tel" name="fone" required autocomplete="tel" inputmode="numeric" placeholder="(00) 00000-0000" data-mask="fone">
+            <input type="tel" name="fone" required autocomplete="tel" inputmode="numeric" placeholder="(83) 99999-0000" data-mask="fone">
           </label>
         </div>
         <div class="row">
@@ -561,19 +605,19 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
       <aside class="contato__info reveal">
         <a class="info" href="#" data-wa="Olá! Vim pelo site da JMS.">
           <span class="info__ico info__ico--wa"><svg class="ic"><use href="#i-whatsapp"/></svg></span>
-          <span><strong>WhatsApp</strong><em data-jms="whatsapp">(00) 00000-0000</em></span>
+          <span><strong>WhatsApp</strong><em data-jms="whatsapp">(83) 99300-8384</em></span>
         </a>
         <a class="info" href="#" data-jms-link="tel">
           <span class="info__ico"><svg class="ic"><use href="#i-phone"/></svg></span>
-          <span><strong>Telefone</strong><em data-jms="telefone">(00) 0000-0000</em></span>
+          <span><strong>Telefone</strong><em data-jms="telefone"></em></span>
         </a>
         <a class="info" href="#" data-jms-link="email">
           <span class="info__ico"><svg class="ic"><use href="#i-mail"/></svg></span>
-          <span><strong>E-mail</strong><em data-jms="email">contato@exemplo.com.br</em></span>
+          <span><strong>E-mail</strong><em data-jms="email"></em></span>
         </a>
         <div class="info info--static">
           <span class="info__ico"><svg class="ic"><use href="#i-pin"/></svg></span>
-          <span><strong>Atendimento</strong><em data-jms="endereco">Sua Cidade / UF e região</em></span>
+          <span><strong>Atendimento</strong><em data-jms="endereco">João Pessoa, Bayeux e região — PB</em></span>
         </div>
         <div class="info info--static">
           <span class="info__ico"><svg class="ic"><use href="#i-clock"/></svg></span>
@@ -581,9 +625,9 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
         </div>
 
         <div class="cover">
-          <h3>Onde atendemos</h3>
-          <p>Cobrimos <span data-jms="cidade">Sua Cidade</span> e municípios vizinhos. Está um pouco mais longe? Pergunte — muitas vezes conseguimos encaixar na rota.</p>
-          <a class="cover__cta" href="#" data-wa="Olá! Queria confirmar se vocês atendem na minha região.">Confirmar minha região <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <h3>Prefere resolver agora?</h3>
+          <p>O WhatsApp é o canal mais rápido: a triagem sai na conversa e, em urgência, o chamado já entra na fila de atendimento.</p>
+          <a class="cover__cta" href="#" data-wa="Olá! Vim pelo site da JMS e preciso de atendimento.">Abrir conversa no WhatsApp <svg class="ic"><use href="#i-arrow"/></svg></a>
         </div>
       </aside>
     </div>
@@ -612,14 +656,14 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
         <img src="/assets/img/logo.svg" alt="" width="44" height="44" class="brand__mark">
         <span class="brand__txt"><strong>JMS</strong><span>Refrigeração e Gelo</span></span>
       </a>
-      <p>Refrigeração comercial e residencial, câmaras frias e fornecimento de gelo com entrega programada.</p>
+      <p>Refrigeração comercial e residencial, câmaras frias e fornecimento de gelo com entrega programada em João Pessoa, Bayeux e região.</p>
       <div class="footer__social">
         <a href="#" data-jms-link="instagram" aria-label="Instagram"><svg class="ic"><use href="#i-instagram"/></svg></a>
         <a href="#" data-wa="Olá! Vim pelo site da JMS." aria-label="WhatsApp"><svg class="ic"><use href="#i-whatsapp"/></svg></a>
       </div>
     </div>
 
-    <nav class="footer__col" aria-label="Serviços">
+    <nav class="footer__col" aria-label="Serviços de refrigeração">
       <h3>Refrigeração</h3>
       <a href="#refrigeracao">Ar-condicionado</a>
       <a href="#refrigeracao">Refrigeração comercial</a>
@@ -627,7 +671,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
       <a href="#refrigeracao">Manutenção preventiva</a>
     </nav>
 
-    <nav class="footer__col" aria-label="Gelo">
+    <nav class="footer__col" aria-label="Fornecimento de gelo">
       <h3>Gelo</h3>
       <a href="#gelo">Gelo em cubo</a>
       <a href="#gelo">Gelo em escama</a>
@@ -635,19 +679,19 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
       <a href="#gelo">Gelo para eventos</a>
     </nav>
 
-    <nav class="footer__col" aria-label="Institucional">
+    <nav class="footer__col" aria-label="Atendimento">
       <h3>Atendimento</h3>
+      <a href="#cobertura">Onde atendemos</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#faq">Dúvidas frequentes</a>
-      <a href="#contato">Contato</a>
-      <a href="#" data-wa="Olá! Quero falar com a JMS.">WhatsApp</a>
+      <a href="#" data-wa="Olá! Quero falar com a JMS."><span data-jms="whatsapp">(83) 99300-8384</span></a>
     </nav>
   </div>
 
   <div class="wrap footer__bottom">
     <p>&copy; <span id="ano">2026</span> JMS Refrigeração e Gelo. Todos os direitos reservados. <span data-jms="cnpj"></span></p>
-    <p class="footer__made">Feito para converter ·
-      <a href="#" data-wa="Olá! Vim pelo site da JMS.">chame no WhatsApp</a>
+    <p class="footer__made">Atendimento por WhatsApp ·
+      <a href="#" data-wa="Olá! Vim pelo site da JMS.">chame agora</a>
     </p>
   </div>
 </footer>
@@ -659,48 +703,158 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
 </a>
 
 <div class="mobile-bar" id="mobile-bar">
-  <a class="mobile-bar__btn mobile-bar__btn--tel" href="#" data-jms-link="tel"><svg class="ic"><use href="#i-phone"/></svg> Ligar</a>
+  <a class="mobile-bar__btn mobile-bar__btn--gelo" href="#" data-wa="Olá! Quero fazer um pedido de gelo."><svg class="ic"><use href="#i-cube"/></svg> Pedir gelo</a>
   <a class="mobile-bar__btn mobile-bar__btn--wa" href="#" data-wa="Olá! Vim pelo site da JMS e quero um orçamento."><svg class="ic"><use href="#i-whatsapp"/></svg> Orçamento</a>
 </div>
 
+<!-- =================================================================
+     Dados estruturados (schema.org)
+
+     Um @graph com quatro nós: o site, a página, o negócio local e o
+     FAQ. O FAQPage repete PALAVRA POR PALAVRA as perguntas visíveis
+     acima — o Google exige isso, e responder diferente do que está na
+     tela é motivo de perder o rich result.
+
+     O config.js sobrescreve telefone, e-mail, cidades e URL na carga,
+     para não existirem dois lugares com o mesmo dado divergindo.
+     ================================================================= -->
 <script type="application/ld+json" id="ld-json">
 {
   "@context": "https://schema.org",
-  "@type": "HVACBusiness",
-  "name": "JMS Refrigeração e Gelo",
-  "description": "Instalação, manutenção e conserto de ar-condicionado, refrigeração comercial e câmaras frias, além de fornecimento de gelo em cubo, escama e barra com entrega programada.",
-  "url": "https://jms-refrigeracao.desbravando-utv.workers.dev/",
-  "telephone": "+550000000000",
-  "email": "contato@exemplo.com.br",
-  "image": "https://jms-refrigeracao.desbravando-utv.workers.dev/assets/img/og.png",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Sua Cidade",
-    "addressRegion": "UF",
-    "addressCountry": "BR"
-  },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-    "opens": "07:00",
-    "closes": "18:00"
-  }],
-  "areaServed": { "@type": "City", "name": "Sua Cidade" },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Serviços",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instalação de ar-condicionado" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção e higienização de ar-condicionado" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção de refrigeração comercial" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Montagem e manutenção de câmara frigorífica" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Contrato de manutenção preventiva" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gelo em cubo" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gelo em escama" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gelo em barra" } }
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#site",
+      "url": "https://jms-refrigeracao.desbravando-utv.workers.dev/",
+      "name": "JMS Refrigeração e Gelo",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#negocio" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#pagina",
+      "url": "https://jms-refrigeracao.desbravando-utv.workers.dev/",
+      "name": "Ar-condicionado e Gelo em João Pessoa e Bayeux | JMS Refrigeração",
+      "description": "Instalação, manutenção e conserto de ar-condicionado, refrigeração comercial e câmaras frias em João Pessoa, Bayeux e região. Gelo em cubo, escama e barra com entrega.",
+      "inLanguage": "pt-BR",
+      "isPartOf": { "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#site" },
+      "about": { "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#negocio" },
+      "primaryImageOfPage": { "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#logo" }
+    },
+    {
+      "@type": ["HVACBusiness", "LocalBusiness"],
+      "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#negocio",
+      "name": "JMS Refrigeração e Gelo",
+      "alternateName": "JMS Refrigeração",
+      "description": "Instalação, manutenção e conserto de ar-condicionado, refrigeração comercial e câmaras frigoríficas, além de fornecimento de gelo em cubo, escama e barra com entrega programada em João Pessoa, Bayeux e região.",
+      "url": "https://jms-refrigeracao.desbravando-utv.workers.dev/",
+      "telephone": "+5583993008384",
+      "image": "https://jms-refrigeracao.desbravando-utv.workers.dev/assets/img/og.png",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#logo",
+        "url": "https://jms-refrigeracao.desbravando-utv.workers.dev/assets/img/logo.svg",
+        "caption": "JMS Refrigeração e Gelo"
+      },
+      "priceRange": "$$",
+      "currenciesAccepted": "BRL",
+      "knowsLanguage": "pt-BR",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "João Pessoa",
+        "addressRegion": "PB",
+        "addressCountry": "BR"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "João Pessoa" },
+        { "@type": "City", "name": "Bayeux" },
+        { "@type": "City", "name": "Santa Rita" },
+        { "@type": "City", "name": "Cabedelo" },
+        { "@type": "City", "name": "Conde" }
+      ],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "07:00",
+        "closes": "18:00"
+      }],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+5583993008384",
+        "contactType": "customer service",
+        "areaServed": "BR",
+        "availableLanguage": "Portuguese"
+      }],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Serviços de refrigeração e fornecimento de gelo",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instalação de ar-condicionado", "serviceType": "Instalação de split, multi-split, cassete e piso-teto" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção e higienização de ar-condicionado", "serviceType": "Limpeza técnica, recarga de gás e troca de peças" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção de refrigeração comercial", "serviceType": "Balcões, expositores, freezers, ilhas, cervejeiras e chopeiras" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Montagem e manutenção de câmara frigorífica", "serviceType": "Câmaras de resfriados e congelados" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Contrato de manutenção preventiva", "serviceType": "Visitas programadas com checklist e relatório" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Atendimento de urgência em refrigeração", "serviceType": "Chamado prioritário para equipamento parado" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gelo em cubo", "category": "Gelo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gelo em escama", "category": "Gelo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gelo em barra", "category": "Gelo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Entrega programada de gelo", "serviceType": "Rota fixa com reposição recorrente" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#faq",
+      "isPartOf": { "@id": "https://jms-refrigeracao.desbravando-utv.workers.dev/#pagina" },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Vocês cobram a visita técnica?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A triagem pelo WhatsApp é sempre gratuita: você descreve o problema e já recebe uma orientação inicial. Quando é necessário ir até o local para diagnosticar, informamos a condição da visita antes de agendar — você nunca é pego de surpresa." }
+        },
+        {
+          "@type": "Question",
+          "name": "Em quanto tempo vocês atendem uma urgência?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Chamados de equipamento parado entram na frente da fila. Assim que você manda a mensagem, fazemos a triagem e informamos a janela de atendimento mais próxima. Clientes com contrato de manutenção têm prioridade garantida." }
+        },
+        {
+          "@type": "Question",
+          "name": "De quanto em quanto tempo o ar-condicionado precisa de limpeza?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Depende do uso e do ambiente. Em residência, a recomendação usual é a cada 6 meses. Em comércio, cozinha, academia ou ambiente com muita poeira, o intervalo cai bastante. Na primeira visita avaliamos o seu caso e sugerimos a frequência certa." }
+        },
+        {
+          "@type": "Question",
+          "name": "Meu equipamento é de outra marca ou foi instalado por outra empresa. Vocês assumem?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sim. Avaliamos o equipamento como ele está, apontamos o que foi feito fora do padrão e orçamos a correção. Se o conserto não compensar frente à troca, dizemos isso com franqueza." }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual o pedido mínimo de gelo?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Trabalhamos tanto com pedido avulso quanto com volume para eventos e entrega recorrente. As condições variam por região e por quantidade — mande sua necessidade no WhatsApp que informamos na hora." }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto gelo eu preciso para o meu evento?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A conta muda conforme número de convidados, duração, clima e tipo de bebida servida. Nos diga esses quatro dados e a gente calcula o volume recomendado — com margem de segurança e possibilidade de reposição." }
+        },
+        {
+          "@type": "Question",
+          "name": "Vocês atendem em Bayeux e nas cidades vizinhas a João Pessoa?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sim. A operação cobre João Pessoa, Bayeux e os municípios da Grande João Pessoa, tanto para serviço técnico quanto para entrega de gelo. Se o seu endereço estiver um pouco além da lista do site, pergunte no WhatsApp — muitas vezes conseguimos encaixar na rota." }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o contrato de manutenção preventiva?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Levantamos os equipamentos do seu negócio, definimos a frequência de visita e o escopo de cada checagem. Você passa a ter visitas agendadas, histórico por equipamento e prioridade nos chamados de urgência, com um custo mensal previsível." }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais formas de pagamento vocês aceitam?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Trabalhamos com as formas de pagamento mais comuns, incluindo Pix. Para serviços maiores e contratos, as condições são combinadas na proposta. Fale com a gente que informamos as opções disponíveis para o seu caso." }
+        }
+      ]
+    }
+  ]
 }
 </script>
 

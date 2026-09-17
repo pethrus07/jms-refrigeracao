@@ -3,6 +3,25 @@
    Ordem: tokens · base · utilitários · componentes · seções · responsivo
    ========================================================= */
 
+/* ---------- fontes auto-hospedadas ----------
+   Arquivos variáveis (um por família cobre todos os pesos), subconjunto
+   latino — o suficiente para português. Ficam no mesmo domínio: a
+   primeira tela não espera DNS + TLS + download de um terceiro. */
+@font-face{
+  font-family:'Inter';
+  src:url('/assets/fonts/inter-latin-var.woff2') format('woff2-variations'),
+      url('/assets/fonts/inter-latin-var.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Outfit';
+  src:url('/assets/fonts/outfit-latin-var.woff2') format('woff2-variations'),
+      url('/assets/fonts/outfit-latin-var.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 /* ---------- tokens ---------- */
 :root{
   /* azul profundo = frio/confiança; laranja = ação (contraste máximo sobre azul) */
@@ -155,6 +174,7 @@ p{text-wrap:pretty}
 .topbar__right{display:flex;align-items:center;gap:20px}
 .topbar a.topbar__item{transition:color .18s var(--ease)}
 .topbar a.topbar__item:hover{color:#fff}
+.topbar__item--num{font-weight:600;color:#e8f6ff}
 .topbar__item--wa{color:#6ee7a8;font-weight:600}
 
 /* ---------- header ---------- */
@@ -578,6 +598,7 @@ a.info:hover{transform:translateX(4px);border-color:var(--brand)}
   flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;
   padding:16px 10px;font-weight:700;font-size:.95rem;
 }
+.mobile-bar__btn--gelo{background:#fff;color:var(--ink)}
 .mobile-bar__btn--tel{background:#fff;color:var(--ink)}
 .mobile-bar__btn--wa{background:var(--wa);color:#fff}
 

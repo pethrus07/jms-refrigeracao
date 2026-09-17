@@ -1,40 +1,64 @@
 /* =========================================================
    JMS Refrigeração e Gelo — DADOS DO NEGÓCIO
    ---------------------------------------------------------
-   ESTE É O ÚNICO ARQUIVO QUE PRECISA SER EDITADO PARA O SITE
-   ENTRAR NO AR COM OS DADOS REAIS.
+   Este é o arquivo que se edita no dia a dia. Tudo daqui é
+   aplicado no carregamento: os links de WhatsApp, o telefone,
+   o e-mail, a lista de cidades, o rodapé e parte do bloco de
+   dados estruturados que o Google lê.
 
-   Tudo daqui é aplicado em tempo de carregamento: links de
-   WhatsApp, telefone, e-mail, cidade, horário, rodapé e o
-   bloco de dados estruturados (SEO/Google).
+   ATENÇÃO: a cidade também aparece no <title>, na meta
+   description e no canonical do index.html — esses o Google
+   precisa ler no HTML, então não dá para gerá-los por JS.
+   Se mudar de cidade, mude nos dois lugares.
    ========================================================= */
 
 window.JMS = {
 
   /* --- CONTATO --------------------------------------------------------- */
 
-  // Número do WhatsApp SÓ COM DÍGITOS, no formato DDI + DDD + número.
-  // Ex.: (83) 99999-1234  ->  "5583999991234"
-  whatsapp: "5500000000000",
+  // WhatsApp SÓ COM DÍGITOS: DDI + DDD + número.
+  whatsapp: "5583993008384",
 
   // Como o número aparece escrito na tela.
-  whatsappExibicao: "(00) 00000-0000",
+  whatsappExibicao: "(83) 99300-8384",
 
-  // Telefone fixo/alternativo (só dígitos, com DDD). Deixe "" para ocultar.
-  telefone: "0000000000",
-  telefoneExibicao: "(00) 0000-0000",
+  // Mensagem que abre a conversa quando o botão não tem uma própria.
+  mensagemPadrao: "Olá! Vim pelo site da JMS Refrigeração e Gelo e gostaria de um orçamento.",
 
-  email: "contato@exemplo.com.br",
+  // true  = cada botão manda uma mensagem própria ("quero gelo em escama",
+  //         "meu equipamento parou"), e a JMS já sabe do que se trata.
+  // false = TODOS os botões mandam exatamente a mensagemPadrao acima.
+  mensagemPorBotao: true,
 
-  // URL completa do Instagram. Deixe "" para esconder o ícone.
+  // Telefone fixo OPCIONAL, só com dígitos e DDD. Vazio = a linha some do site.
+  // Os botões de ação são todos WhatsApp; isto aqui é só um canal alternativo.
+  telefone: "",
+  telefoneExibicao: "",
+
+  // Vazio = a linha de e-mail some do site e sai dos dados estruturados.
+  email: "",
+
+  // URL completa do Instagram. Vazio = o ícone some.
   instagram: "",
 
   /* --- LOCALIZAÇÃO ----------------------------------------------------- */
 
-  cidade: "Sua Cidade",
-  uf: "UF",
-  endereco: "Sua Cidade / UF e região",
+  cidade: "João Pessoa",
+  uf: "PB",
+  endereco: "João Pessoa, Bayeux e região — PB",
   horario: "Seg a Sáb, 7h às 18h",
+
+  /* ⚠️ CONFIRME ESTA LISTA. Ela afirma publicamente onde a JMS atende e
+     alimenta a seção "Onde atendemos" e os dados estruturados. Estão aqui
+     os municípios da Grande João Pessoa; tire o que não atender e
+     acrescente o que faltar. */
+  cidades: [
+    "João Pessoa",
+    "Bayeux",
+    "Santa Rita",
+    "Cabedelo",
+    "Conde"
+  ],
 
   // Aparece no rodapé, depois do "todos os direitos reservados".
   // Ex.: "CNPJ 00.000.000/0001-00"
@@ -46,9 +70,8 @@ window.JMS = {
   site: "https://jms-refrigeracao.desbravando-utv.workers.dev",
 
   /* --- DEPOIMENTOS ------------------------------------------------------
-     A seção de depoimentos fica ESCONDIDA enquanto esta lista estiver
-     vazia — melhor nenhum depoimento do que um inventado.
-     Ao receber avaliações reais, adicione assim:
+     A seção fica ESCONDIDA enquanto esta lista estiver vazia — melhor
+     nenhum depoimento do que um inventado. Com avaliações reais:
 
        { texto: "...", nome: "Nome do cliente", cargo: "Bar do Zé", nota: 5 }
      --------------------------------------------------------------------- */

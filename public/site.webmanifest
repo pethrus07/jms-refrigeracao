@@ -1,0 +1,14 @@
+{
+  "name": "JMS Refrigeração e Gelo",
+  "short_name": "JMS",
+  "description": "Ar-condicionado, refrigeração comercial, câmaras frias e fornecimento de gelo em João Pessoa, Bayeux e região.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#05111F",
+  "theme_color": "#05111F",
+  "icons": [
+    { "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

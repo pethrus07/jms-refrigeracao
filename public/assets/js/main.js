@@ -11,6 +11,12 @@
 
   var soDigitos = function (v) { return String(v || '').replace(/\D/g, ''); };
 
+  function escapar(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
   /* ---------------------------------------------------------------
      1. Dados do negócio -> texto da página
      Cada elemento [data-jms="chave"] recebe o valor correspondente.
@@ -30,20 +36,20 @@
     if (v) el.textContent = v;
   });
 
-  // Sem telefone fixo cadastrado: some com tudo que depende dele.
-  if (!soDigitos(C.telefone)) {
-    $$('[data-jms-link="tel"]').forEach(function (el) { el.hidden = true; });
-  }
-
   /* ---------------------------------------------------------------
-     2. Links de contato
-     data-wa="mensagem"  -> abre o WhatsApp com a mensagem pronta
-     data-jms-link="tel|email|instagram"
+     2. Todos os CTAs vão para o WhatsApp
+
+     data-wa="mensagem"  -> abre a conversa com essa mensagem
+     data-wa=""          -> usa a mensagemPadrao do config
+     mensagemPorBotao:false no config força a mensagemPadrao em todos.
      --------------------------------------------------------------- */
   var waNum = soDigitos(C.whatsapp);
+  var padrao = C.mensagemPadrao || '';
+  var porBotao = C.mensagemPorBotao !== false;
 
   function linkWa(msg) {
-    return 'https://wa.me/' + waNum + (msg ? '?text=' + encodeURIComponent(msg) : '');
+    var texto = (porBotao && msg) ? msg : (padrao || msg || '');
+    return 'https://wa.me/' + waNum + (texto ? '?text=' + encodeURIComponent(texto) : '');
   }
 
   $$('[data-wa]').forEach(function (a) {
@@ -52,50 +58,94 @@
     a.rel = 'noopener';
   });
 
+  /* Canais alternativos, ambos opcionais: vazios no config, a linha some
+     da página. É por isso que [hidden] precisa do !important no CSS. */
   $$('[data-jms-link]').forEach(function (a) {
     var tipo = a.getAttribute('data-jms-link');
-    if (tipo === 'tel' && soDigitos(C.telefone)) {
-      a.href = 'tel:+55' + soDigitos(C.telefone);
-    } else if (tipo === 'email' && C.email) {
-      a.href = 'mailto:' + C.email;
-    } else if (tipo === 'instagram') {
-      if (C.instagram) { a.href = C.instagram; a.target = '_blank'; a.rel = 'noopener'; }
-      else { a.hidden = true; }
-    }
+    var valor = tipo === 'tel' ? soDigitos(C.telefone)
+              : tipo === 'email' ? C.email
+              : C.instagram;
+
+    if (!valor) { a.hidden = true; return; }
+
+    if (tipo === 'tel') a.href = 'tel:+55' + valor;
+    else if (tipo === 'email') a.href = 'mailto:' + valor;
+    else { a.href = valor; a.target = '_blank'; a.rel = 'noopener'; }
   });
 
-  // Aviso em desenvolvimento: número ainda é o de exemplo.
-  if (!waNum || /^55000/.test(waNum)) {
-    console.warn('[JMS] O WhatsApp ainda está com o número de exemplo. Edite /assets/js/config.js antes de divulgar o site.');
+  if (!waNum || waNum.length < 12) {
+    console.warn('[JMS] O número do WhatsApp em /assets/js/config.js parece incompleto:', C.whatsapp);
   }
 
   /* ---------------------------------------------------------------
-     3. Dados estruturados (SEO) espelham o config
-     Evita o site ter dois lugares com o mesmo telefone divergindo.
+     3. Lista de cidades atendidas (SEO local + seção "Onde atendemos")
+     --------------------------------------------------------------- */
+  (function () {
+    var lista = Array.isArray(C.cidades) ? C.cidades : [];
+    var ul = $('#cidades-lista');
+    if (!ul || !lista.length) return;
+    ul.innerHTML = lista.map(function (c) {
+      return '<li class="reveal">' + escapar(c) + '</li>';
+    }).join('');
+  })();
+
+  /* ---------------------------------------------------------------
+     4. Dados estruturados (schema.org) espelham o config
+
+     O @graph do HTML é a fonte da estrutura; o config manda no
+     conteúdo. Assim o telefone não existe em dois lugares podendo
+     divergir. Domínio inteiro é trocado de uma vez, porque ele
+     aparece em todo @id do grafo.
      --------------------------------------------------------------- */
   (function () {
     var tag = document.getElementById('ld-json');
     if (!tag) return;
+
     try {
-      var ld = JSON.parse(tag.textContent);
-      if (waNum) ld.telephone = '+' + waNum;
-      if (C.email) ld.email = C.email;
-      if (C.site) {
-        ld.url = C.site + '/';
-        ld.image = C.site + '/assets/img/og.png';
+      var canonico = ($('link[rel="canonical"]') || {}).href || '';
+      var dominioHtml = canonico.replace(/\/+$/, '');
+      var dominioCfg = (C.site || '').replace(/\/+$/, '');
+
+      var txt = tag.textContent;
+      if (dominioCfg && dominioHtml && dominioCfg !== dominioHtml) {
+        txt = txt.split(dominioHtml).join(dominioCfg);
       }
-      if (C.cidade) {
-        ld.address.addressLocality = C.cidade;
-        ld.areaServed.name = C.cidade;
+
+      var ld = JSON.parse(txt);
+      var nos = ld['@graph'] || [ld];
+
+      function ehTipo(no, t) {
+        var x = no['@type'];
+        return x === t || (Array.isArray(x) && x.indexOf(t) >= 0);
       }
-      if (C.uf) ld.address.addressRegion = C.uf;
-      if (C.instagram) ld.sameAs = [C.instagram];
+
+      nos.forEach(function (no) {
+        if (!ehTipo(no, 'LocalBusiness')) return;
+
+        if (waNum) {
+          no.telephone = '+' + waNum;
+          if (no.contactPoint && no.contactPoint[0]) no.contactPoint[0].telephone = '+' + waNum;
+        }
+        if (C.email) no.email = C.email; else delete no.email;
+        if (C.instagram) no.sameAs = [C.instagram];
+        if (C.cidade) no.address.addressLocality = C.cidade;
+        if (C.uf) no.address.addressRegion = C.uf;
+        if (Array.isArray(C.cidades) && C.cidades.length) {
+          no.areaServed = C.cidades.map(function (c) {
+            return { '@type': 'City', name: c };
+          });
+        }
+        if (no.openingHoursSpecification && C.horario) no.openingHoursSpecification[0].description = C.horario;
+      });
+
       tag.textContent = JSON.stringify(ld);
-    } catch (e) { /* JSON inválido não pode derrubar o site */ }
+    } catch (e) {
+      /* JSON malformado não pode derrubar o site: o Google lê o que estiver no HTML */
+    }
   })();
 
   /* ---------------------------------------------------------------
-     4. Depoimentos — a seção só existe se houver depoimento real
+     5. Depoimentos — a seção só existe se houver depoimento real
      --------------------------------------------------------------- */
   (function () {
     var lista = Array.isArray(C.depoimentos) ? C.depoimentos : [];
@@ -116,14 +166,8 @@
     sec.hidden = false;
   })();
 
-  function escapar(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-
   /* ---------------------------------------------------------------
-     5. Menu mobile
+     6. Menu mobile
      --------------------------------------------------------------- */
   (function () {
     var burger = $('#burger');
@@ -157,7 +201,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     6. Sombra do cabeçalho ao rolar
+     7. Sombra do cabeçalho ao rolar
      --------------------------------------------------------------- */
   (function () {
     var header = $('#header');
@@ -174,7 +218,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     7. FAQ: um aberto por vez
+     8. FAQ: um aberto por vez
      --------------------------------------------------------------- */
   (function () {
     var itens = $$('.faq__item');
@@ -187,11 +231,12 @@
   })();
 
   /* ---------------------------------------------------------------
-     8. Entrada dos blocos ao rolar
+     9. Entrada dos blocos ao rolar
 
-     O CSS só esconde .reveal quando a raiz tem a classe .js, que é
-     adicionada aqui. Se este script não rodar, o site aparece inteiro
-     — conteúdo de página comercial não pode depender de animação.
+     O CSS só esconde .reveal quando a raiz tem a classe .js, marcada
+     no <head> antes da primeira pintura. Se este script não rodar, a
+     marca cai sozinha em 3s e o site aparece inteiro — conteúdo
+     comercial não pode depender de animação.
 
      A margem do observador é em PIXELS, não em %: em tela muito alta
      uma margem percentual vira centenas de pixels e blocos legítimos
@@ -201,7 +246,7 @@
     var raiz = document.documentElement;
     var alvos = $$('.reveal');
 
-    // Avisa o script do <head> que a revelação tem dono (ele desiste do plano B).
+    // Avisa o script do <head> que a revelação tem dono.
     window.__jmsReveal = true;
 
     var reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -239,7 +284,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     9. Máscara de telefone
+     10. Máscara de telefone
      --------------------------------------------------------------- */
   $$('[data-mask="fone"]').forEach(function (inp) {
     inp.addEventListener('input', function () {
@@ -253,7 +298,7 @@
   });
 
   /* ---------------------------------------------------------------
-     10. Formulários -> WhatsApp
+     11. Formulários -> WhatsApp
      Não há backend: o formulário monta a mensagem e entrega a
      conversa já preenchida. Zero dado armazenado no site.
      --------------------------------------------------------------- */
@@ -285,7 +330,7 @@
       if (d.get('local')) linhas.push('Cidade/bairro: ' + d.get('local'));
       if (d.get('msg')) linhas.push('', 'Detalhe: ' + d.get('msg'));
 
-      window.open(linkWa(linhas.join('\n')), '_blank', 'noopener');
+      window.open('https://wa.me/' + waNum + '?text=' + encodeURIComponent(linhas.join('\n')), '_blank', 'noopener');
     });
 
     // Some com o erro assim que a pessoa começa a corrigir.
@@ -296,7 +341,7 @@
   });
 
   /* ---------------------------------------------------------------
-     11. Ano do rodapé
+     12. Ano do rodapé
      --------------------------------------------------------------- */
   var ano = $('#ano');
   if (ano) ano.textContent = new Date().getFullYear();
