@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jms-refrigeracao.pages.dev/sitemap.xml
+Sitemap: https://jms-refrigeracao.desbravando-utv.workers.dev/sitemap.xml

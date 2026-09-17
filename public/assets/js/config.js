@@ -43,7 +43,7 @@ window.JMS = {
   /* --- SITE ------------------------------------------------------------ */
 
   // Domínio final, sem barra no fim. Usado no SEO.
-  site: "https://jms-refrigeracao.pages.dev",
+  site: "https://jms-refrigeracao.desbravando-utv.workers.dev",
 
   /* --- DEPOIMENTOS ------------------------------------------------------
      A seção de depoimentos fica ESCONDIDA enquanto esta lista estiver

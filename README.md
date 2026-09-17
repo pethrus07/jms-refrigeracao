@@ -21,7 +21,7 @@ Tudo que é dado do negócio está em **um arquivo só**:
 | `cidade`, `uf`, `endereco` | região de atendimento | ⚠️ exemplo |
 | `horario` | horário de funcionamento | conferir |
 | `cnpj` | linha do rodapé (deixe `""` para omitir) | vazio |
-| `site` | domínio final, sem barra no fim | pages.dev |
+| `site` | domínio final, sem barra no fim | URL provisória |
 | `depoimentos` | lista de avaliações reais | vazio |
 
 Esses valores alimentam, em tempo de carregamento: os ~25 botões de WhatsApp,
@@ -36,7 +36,10 @@ de **dados estruturados** que o Google lê (`HVACBusiness`).
 - **Promessas do site**: "garantia no serviço", "equipe técnica própria",
   "atendimento de urgência", "prioridade para contrato". São afirmações comerciais
   padrão do setor — confirme que todas valem para a JMS ou ajuste o texto.
-- **`public/sitemap.xml` e `public/robots.txt`**: trocar o domínio quando sair do `.pages.dev`.
+- **`<meta name="robots" content="noindex, nofollow">`** no `index.html`: está lá de
+  propósito enquanto o telefone for o de exemplo. **Remover ao publicar de verdade** —
+  enquanto estiver, o Google não indexa o site.
+- **`public/sitemap.xml` e `public/robots.txt`**: trocar o domínio ao apontar um domínio próprio.
 - **`public/index.html`**: a tag `<link rel="canonical">` e as meta `og:` também
   carregam o domínio (o resto do SEO é preenchido pelo `config.js`).
 
@@ -79,14 +82,17 @@ Ou qualquer servidor estático apontando para `public/`
 ## Publicar
 
 ```bash
-npx wrangler pages deploy public --project-name=jms-refrigeracao
+npx wrangler deploy
 ```
 
-Conta Cloudflare: `ryzecode08@gmail.com`.
-Cada `deploy` gera uma URL de preview e atualiza a URL de produção.
+Conta Cloudflare: `ryzecode08@gmail.com`. Config em `wrangler.jsonc`.
+No ar em **https://jms-refrigeracao.desbravando-utv.workers.dev**
+
+> O projeto foi criado no Cloudflare Pages, que passou a fazer parte do Cloudflare
+> Workers — por isso o comando é `wrangler deploy` e não `wrangler pages deploy`.
 
 ## Domínio próprio
 
-No painel do Cloudflare → Workers & Pages → `jms-refrigeracao` → Custom domains.
-Depois de apontar, atualizar `site` no `config.js`, o `canonical`/`og:` no
-`index.html`, o `sitemap.xml` e o `robots.txt`.
+No painel do Cloudflare → Workers & Pages → `jms-refrigeracao` → Domains & Routes.
+Depois de apontar, trocar a URL em quatro lugares: `site` no `config.js`, o
+`canonical`/`og:` no `index.html`, o `sitemap.xml` e o `robots.txt`.
