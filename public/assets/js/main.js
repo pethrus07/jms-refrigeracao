@@ -33,7 +33,12 @@
 
   $$('[data-jms]').forEach(function (el) {
     var v = textos[el.getAttribute('data-jms')];
-    if (v) el.textContent = v;
+    if (v) { el.textContent = v; return; }
+
+    // Campo vazio no config (horário, telefone, CNPJ): a linha inteira do
+    // cartão de contato some, em vez de ficar um rótulo sem valor ao lado.
+    var linha = el.closest('.info');
+    if (linha) linha.hidden = true;
   });
 
   /* ---------------------------------------------------------------
@@ -135,7 +140,6 @@
             return { '@type': 'City', name: c };
           });
         }
-        if (no.openingHoursSpecification && C.horario) no.openingHoursSpecification[0].description = C.horario;
       });
 
       tag.textContent = JSON.stringify(ld);

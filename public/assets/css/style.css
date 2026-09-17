@@ -623,7 +623,6 @@ a.info:hover{transform:translateX(4px);border-color:var(--brand)}
 
 @media (max-width:860px){
   :root{--gut:18px}
-  .topbar__item em{display:none}
   .nav{
     position:fixed;inset:calc(var(--header-h) + 42px) 0 auto 0;
     flex-direction:column;align-items:stretch;gap:0;

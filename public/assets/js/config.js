@@ -46,7 +46,12 @@ window.JMS = {
   cidade: "João Pessoa",
   uf: "PB",
   endereco: "João Pessoa, Bayeux e região — PB",
-  horario: "Seg a Sáb, 7h às 18h",
+
+  // Vazio = a linha de horário some da página.
+  // Ao preencher, avise também o horário nos dados estruturados: o bloco
+  // "openingHoursSpecification" foi retirado do index.html para o site não
+  // declarar ao Google um horário que ninguém confirmou.
+  horario: "",
 
   /* ⚠️ CONFIRME ESTA LISTA. Ela afirma publicamente onde a JMS atende e
      alimenta a seção "Onde atendemos" e os dados estruturados. Estão aqui

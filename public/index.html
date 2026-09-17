@@ -38,7 +38,7 @@
      e pré-carregada, ela não depende de dois DNS externos para o texto aparecer. -->
 <link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v=20260917b">
 
 <script>
 /* Marca que há JS ANTES da primeira pintura: é isso que autoriza o CSS a esconder
@@ -86,7 +86,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
 <!-- ===== barra superior ===== -->
 <div class="topbar">
   <div class="wrap topbar__in">
-    <p class="topbar__item"><svg class="ic"><use href="#i-clock"/></svg> <span data-jms="horario">Seg a Sáb, 7h às 18h</span> <em>· urgência fora do horário</em></p>
+    <p class="topbar__item"><svg class="ic"><use href="#i-pin"/></svg> Atendemos João Pessoa, Bayeux <em>e região</em></p>
     <div class="topbar__right">
       <a class="topbar__item topbar__item--num" href="#" data-wa=""><svg class="ic"><use href="#i-whatsapp"/></svg> <span data-jms="whatsapp">(83) 99300-8384</span></a>
       <a class="topbar__item topbar__item--wa" href="#" data-wa="Olá! Vim pelo site da JMS e gostaria de falar com um atendente."><svg class="ic"><use href="#i-whatsapp"/></svg> Chamar no WhatsApp</a>
@@ -621,7 +621,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
         </div>
         <div class="info info--static">
           <span class="info__ico"><svg class="ic"><use href="#i-clock"/></svg></span>
-          <span><strong>Horário</strong><em data-jms="horario">Seg a Sáb, 7h às 18h</em></span>
+          <span><strong>Horário</strong><em data-jms="horario"></em></span>
         </div>
 
         <div class="cover">
@@ -772,12 +772,6 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
         { "@type": "City", "name": "Cabedelo" },
         { "@type": "City", "name": "Conde" }
       ],
-      "openingHoursSpecification": [{
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens": "07:00",
-        "closes": "18:00"
-      }],
       "contactPoint": [{
         "@type": "ContactPoint",
         "telephone": "+5583993008384",
@@ -858,7 +852,7 @@ setTimeout(function(){ if(!window.__jmsReveal) document.documentElement.classLis
 }
 </script>
 
-<script src="/assets/js/config.js"></script>
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/config.js?v=20260917b"></script>
+<script src="/assets/js/main.js?v=20260917b" defer></script>
 </body>
 </html>

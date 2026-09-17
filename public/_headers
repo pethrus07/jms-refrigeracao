@@ -12,12 +12,14 @@
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
 
-# CSS e JS mudam junto com o conteúdo; uma hora com revalidação.
+# CSS e JS SEM cache de duração: config.js carrega o telefone e a lista de
+# cidades, e uma hora de cache guardada no navegador do cliente já mostrou
+# o número antigo depois de uma publicação. Revalidar sempre custa um 304.
 /assets/css/*
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /assets/js/*
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Fontes e imagens são imutáveis na prática.
 /assets/fonts/*

@@ -35,7 +35,8 @@ opcionais, a lista de cidades, o rodapé e o conteúdo dos dados estruturados.
 | `mensagemPorBotao` | `true` = cada botão manda a sua · `false` = todos mandam a padrão |
 | `telefone` / `email` / `instagram` | **opcionais**: vazios, a linha some da página |
 | `cidade` · `uf` · `cidades[]` | região de atendimento e a seção "Onde atendemos" |
-| `horario` · `endereco` · `cnpj` | textos de contato e rodapé |
+| `endereco` · `cnpj` | textos de contato e rodapé |
+| `horario` | **vazio hoje**: a linha some da página. Ver nota abaixo. |
 | `depoimentos[]` | vazio = a seção de depoimentos fica escondida |
 
 > **A cidade aparece em dois lugares.** No `config.js` (textos da página) e
@@ -57,6 +58,24 @@ opcionais, a lista de cidades, o rodapé e o conteúdo dos dados estruturados.
 3. **Nenhum preço** aparece no site, de propósito. Todo pedido de valor vira conversa.
 4. **Nenhum depoimento** foi inventado: a seção só existe quando `depoimentos[]`
    tiver avaliação real.
+5. **O horário de atendimento saiu do site.** Ele tinha sido escrito por suposição
+   ("Seg a Sáb, 7h às 18h") e não estava confirmado. Para trazer de volta: preencha
+   `horario` no `config.js` (a linha reaparece no cartão de contato) e reponha o
+   bloco `openingHoursSpecification` no `@graph` do `index.html`, com os horários
+   reais — é o que o Google mostra como "aberto/fechado agora".
+
+---
+
+## Se uma alteração não aparecer no navegador
+
+Os arquivos são chamados com uma versão na URL: `style.css?v=20260917b`. Ao publicar
+uma mudança em CSS ou JS que **precise** aparecer na hora para quem já visitou o site,
+troque esse `?v=` nas três linhas do `index.html` (e nas do `404.html`).
+
+O `_headers` já manda o navegador revalidar HTML, CSS e JS a cada visita
+(`max-age=0, must-revalidate`) — o `?v=` é a garantia extra para escapar de uma
+borda da Cloudflare que ainda tenha a versão anterior guardada. Fontes e imagens
+continuam com cache longo, porque não mudam.
 
 ---
 
