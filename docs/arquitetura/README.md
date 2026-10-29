@@ -1,0 +1,18 @@
+# Arquitetura
+
+Diagramas gerados a partir do Sinapse (o segundo cérebro do Pedro). Cada projeto tem três vistas,
+cada uma numa notação padrão:
+
+1. **Quem usa e para quê**: UML, diagrama de casos de uso.
+2. **O processo principal**: BPMN 2.0, com raias por quem executa.
+3. **A arquitetura**: modelo C4, nível 2 (containers).
+
+## Site JMS Refrigeração · página que leva ao WhatsApp
+
+Site institucional de uma página da JMS Refrigeração e Gelo. Estático, sem backend nem banco: todo botão e formulário abre o WhatsApp da JMS com a mensagem já escrita.
+
+![Site JMS Refrigeração · página que leva ao WhatsApp](./site-jms-refrigeracao.svg)
+
+Editável: [`site-jms-refrigeracao.excalidraw`](./site-jms-refrigeracao.excalidraw), abre em [excalidraw.com](https://excalidraw.com) ou no VS Code com a extensão Excalidraw.
+
+A fonte destes arquivos é o vault do Sinapse (`09-DESENHOS/`); alterações feitas aqui são sobrescritas na próxima publicação.
