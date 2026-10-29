@@ -11,7 +11,17 @@ cada uma numa notação padrão:
 
 Site institucional de uma página da JMS Refrigeração e Gelo. Estático, sem backend nem banco: todo botão e formulário abre o WhatsApp da JMS com a mensagem já escrita.
 
-![Site JMS Refrigeração · página que leva ao WhatsApp](./site-jms-refrigeracao.svg)
+### Quem usa e para quê (UML)
+
+![Casos de uso · Site JMS Refrigeração · página que leva ao WhatsApp](./site-jms-refrigeracao-1-casos-de-uso.svg)
+
+### Da visita à conversa no WhatsApp (BPMN 2.0)
+
+![Processo · Site JMS Refrigeração · página que leva ao WhatsApp](./site-jms-refrigeracao-2-processo.svg)
+
+### Arquitetura (C4, containers)
+
+![Arquitetura · Site JMS Refrigeração · página que leva ao WhatsApp](./site-jms-refrigeracao-3-arquitetura.svg)
 
 Editável: [`site-jms-refrigeracao.excalidraw`](./site-jms-refrigeracao.excalidraw), abre em [excalidraw.com](https://excalidraw.com) ou no VS Code com a extensão Excalidraw.
 
