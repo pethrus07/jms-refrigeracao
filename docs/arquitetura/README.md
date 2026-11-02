@@ -4,23 +4,23 @@ Três vistas do sistema, cada uma numa notação padrão.
 
 | Vista | Notação | Responde |
 |---|---|---|
-| 1. Casos de uso | UML | Quem usa e para quê |
-| 2. Processo | BPMN 2.0 | Como o trabalho anda, com uma raia para cada quem executa |
-| 3. Arquitetura | C4, nível 2 | De que partes o sistema é feito e com quem conversa |
+| Casos de uso | UML | Quem usa e para quê |
+| Processo | BPMN 2.0 | Como o trabalho anda, com uma raia para cada quem executa |
+| Arquitetura | C4, nível 2 | De que partes o sistema é feito e com quem conversa |
 
 ## Site JMS Refrigeração · página que leva ao WhatsApp
 
 Site institucional de uma página da JMS Refrigeração e Gelo. Estático, sem backend nem banco: todo botão e formulário abre o WhatsApp da JMS com a mensagem já escrita.
 
-### 1. Quem usa e para quê
+### Quem usa e para quê
 
 ![Casos de uso de Site JMS Refrigeração](./site-jms-refrigeracao-1-casos-de-uso.svg)
 
-### 2. Da visita à conversa no WhatsApp
+### Da visita à conversa no WhatsApp
 
 ![Processo de Site JMS Refrigeração](./site-jms-refrigeracao-2-processo.svg)
 
-### 3. Arquitetura
+### Arquitetura
 
 ![Arquitetura de Site JMS Refrigeração](./site-jms-refrigeracao-3-arquitetura.svg)
 
