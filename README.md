@@ -7,7 +7,7 @@ One-page static website for a small refrigeration, air conditioning and ice deli
 ## Status
 
 In production since 2026-09-17, on Cloudflare Workers (static assets).
-Current address: https://jms-refrigeracao.desbravando-utv.workers.dev
+Address after the move (branch `revisao-2026-11`, not deployed yet): https://jms-refrigeracao.ryzecode.workers.dev, on the RYZE Cloudflare account (`account_id` pinned in `wrangler.jsonc`). Until deploy, production is still at https://jms-refrigeracao.desbravando-utv.workers.dev
 
 The `workers.dev` subdomain carries the name of another client's Cloudflare account. Moving it is planned: see [docs/DOMINIO.md](docs/DOMINIO.md) (in Portuguese) and [docs/ROADMAP.md](docs/ROADMAP.md).
 

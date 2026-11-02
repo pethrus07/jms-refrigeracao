@@ -7,7 +7,7 @@ Site estático de uma página para um pequeno negócio de refrigeração, ar-con
 ## Status
 
 No ar desde 17/09/2026, no Cloudflare Workers (assets estáticos).
-Endereço atual: https://jms-refrigeracao.desbravando-utv.workers.dev
+Endereço depois da troca (branch `revisao-2026-11`, ainda sem deploy): https://jms-refrigeracao.ryzecode.workers.dev, na conta Cloudflare RYZE (`account_id` fixado no `wrangler.jsonc`). Até o deploy, a produção segue em https://jms-refrigeracao.desbravando-utv.workers.dev
 
 O subdomínio `workers.dev` leva o nome da conta Cloudflare de outro cliente. A troca está planejada: ver [docs/DOMINIO.md](docs/DOMINIO.md) e [docs/ROADMAP.md](docs/ROADMAP.md).
 

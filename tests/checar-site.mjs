@@ -21,7 +21,7 @@ const raiz = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
 const ler = (f) => readFileSync(join(raiz, f), 'utf8');
 
 // Subdomínios de outros clientes que não podem aparecer no SEO deste site.
-const HOSTS_PROIBIDOS = [];
+const HOSTS_PROIBIDOS = ['desbravando-utv'];
 
 let falhas = 0;
 let ok = 0;
