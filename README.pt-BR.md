@@ -99,4 +99,4 @@ Sempre pelo `cf.ps1` com a conta certa (ver `docs/DOMINIO.md`). O projeto nasceu
 
 ## Licença
 
-Todos os direitos reservados. Nome, textos e logo pertencem ao negócio.
+Todos os direitos reservados. Publicado como portfólio; não licenciado para reuso. Veja o arquivo [LICENSE](LICENSE).

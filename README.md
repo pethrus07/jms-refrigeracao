@@ -99,4 +99,4 @@ Run it through `cf.ps1` with the right account (see `docs/DOMINIO.md`). The proj
 
 ## License
 
-All rights reserved. The business name, texts and logo belong to the business.
+All rights reserved. Published as portfolio; not licensed for reuse. See [LICENSE](LICENSE).
