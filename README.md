@@ -1,166 +1,102 @@
-# JMS Refrigeração e Gelo — site institucional
+[Português](README.pt-BR.md) | English
 
-Site de uma página, estático, com **todos os CTAs indo para o WhatsApp**.
-Sem backend, sem banco, sem build: arquivos soltos servidos pelo Cloudflare.
+# JMS Refrigeração e Gelo · website
 
-**No ar:** https://jms-refrigeracao.desbravando-utv.workers.dev
-**WhatsApp:** (83) 99300-8384 · **Atendimento:** João Pessoa, Bayeux e região
+One-page static website for a small refrigeration, air conditioning and ice delivery business in João Pessoa, Brazil. Every call to action opens WhatsApp with a ready-made message. There is no backend, no database and no build step.
 
----
+## Status
 
-## Como o site converte
+In production since 2026-09-17, on Cloudflare Workers (static assets).
+Current address: https://jms-refrigeracao.desbravando-utv.workers.dev
 
-Não existe formulário que envia e-mail, nem "fale conosco" que cai numa caixa
-que ninguém abre. **Os 34 pontos de ação da página abrem o WhatsApp com a
-mensagem já escrita**, e o contexto vai junto: quem clica em "Pedir gelo em
-escama" chega dizendo isso, e a JMS já sabe do que se trata antes de responder.
+The `workers.dev` subdomain carries the name of another client's Cloudflare account. Moving it is planned: see [docs/DOMINIO.md](docs/DOMINIO.md) (in Portuguese) and [docs/ROADMAP.md](docs/ROADMAP.md).
 
-Os dois formulários (hero e contato) também não têm servidor: montam a mensagem
-com nome, telefone, assunto e detalhe, e entregam a conversa pronta. Nada é
-armazenado neste site.
+## The problem it solves
 
----
+The business gets orders by WhatsApp and needs to show up in local search. A contact form that sends e-mail would land in an inbox nobody reads. Here, all 34 action points on the page open a WhatsApp chat with a message that already says what the visitor wants ("I need flake ice", "my AC stopped"). The two forms build the message from name, phone and subject, and hand over the chat. Nothing is stored by the site.
 
-## O arquivo que se edita
+## Stack
 
-📄 [`public/assets/js/config.js`](public/assets/js/config.js) — dados do negócio.
-Alimenta, no carregamento: todos os links de WhatsApp, o telefone e o e-mail
-opcionais, a lista de cidades, o rodapé e o conteúdo dos dados estruturados.
+- Plain HTML, CSS and JavaScript, no framework, no build.
+- Cloudflare Workers with static assets (`wrangler.jsonc`, folder `public/`).
+- Self-hosted Inter and Outfit fonts (variable, Latin subset). Zero third-party requests.
+- `_headers` for security headers and cache rules.
 
-| Campo | O que faz |
-|---|---|
-| `whatsapp` | `55` + DDD + número, só dígitos. É o destino de **todos** os CTAs. |
-| `whatsappExibicao` | como o número aparece escrito na tela |
-| `mensagemPadrao` | mensagem usada quando o botão não tem uma própria |
-| `mensagemPorBotao` | `true` = cada botão manda a sua · `false` = todos mandam a padrão |
-| `telefone` / `email` / `instagram` | **opcionais**: vazios, a linha some da página |
-| `cidade` · `uf` · `cidades[]` | região de atendimento e a seção "Onde atendemos" |
-| `endereco` · `cnpj` | textos de contato e rodapé |
-| `horario` | **vazio hoje**: a linha some da página. Ver nota abaixo. |
-| `depoimentos[]` | vazio = a seção de depoimentos fica escondida |
-
-> **A cidade aparece em dois lugares.** No `config.js` (textos da página) e
-> direto no `index.html` — `<title>`, `meta description`, `canonical` e `og:`.
-> Esses o Google precisa ler no HTML, então não dá para gerá-los por JS.
-> Ao mudar de cidade, mude nos dois.
-
----
-
-## O que ainda precisa da sua confirmação
-
-1. **A lista de cidades** em `config.js` (`cidades[]`) hoje traz os municípios da
-   Grande João Pessoa: João Pessoa, Bayeux, Santa Rita, Cabedelo e Conde.
-   Isso é uma **afirmação pública de onde a JMS atende** — tire o que não atender.
-   A lista alimenta a seção "Onde atendemos" e o `areaServed` dos dados estruturados.
-2. **As promessas do texto**: "garantia no serviço", "equipe técnica própria",
-   "atendimento de urgência", "prioridade para contrato", "gelo com água tratada".
-   São afirmações comerciais padrão do setor — confirme que todas valem.
-3. **Nenhum preço** aparece no site, de propósito. Todo pedido de valor vira conversa.
-4. **Nenhum depoimento** foi inventado: a seção só existe quando `depoimentos[]`
-   tiver avaliação real.
-5. **O horário de atendimento saiu do site.** Ele tinha sido escrito por suposição
-   ("Seg a Sáb, 7h às 18h") e não estava confirmado. Para trazer de volta: preencha
-   `horario` no `config.js` (a linha reaparece no cartão de contato) e reponha o
-   bloco `openingHoursSpecification` no `@graph` do `index.html`, com os horários
-   reais — é o que o Google mostra como "aberto/fechado agora".
-
----
-
-## Se uma alteração não aparecer no navegador
-
-Os arquivos são chamados com uma versão na URL: `style.css?v=20260917b`. Ao publicar
-uma mudança em CSS ou JS que **precise** aparecer na hora para quem já visitou o site,
-troque esse `?v=` nas três linhas do `index.html` (e nas do `404.html`).
-
-O `_headers` já manda o navegador revalidar HTML, CSS e JS a cada visita
-(`max-age=0, must-revalidate`) — o `?v=` é a garantia extra para escapar de uma
-borda da Cloudflare que ainda tenha a versão anterior guardada. Fontes e imagens
-continuam com cache longo, porque não mudam.
-
----
-
-## SEO — o que já está feito
-
-**Conteúdo e marcação**
-- Título, descrição e `og:` com os termos e a cidade na frente.
-- Um `<h1>` só, hierarquia `h2`/`h3` fechada, HTML semântico (`main`, `section`,
-  `article`, `nav`, `footer`) e `lang="pt-BR"`.
-- Seção **"Onde atendemos"** com os municípios — o bloco que responde à busca local.
-- Cidade citada naturalmente no hero, nos serviços, no gelo, no FAQ e no rodapé.
-
-**Dados estruturados** (`<script type="application/ld+json">` no fim do `index.html`)
-Um `@graph` com quatro nós: `WebSite`, `WebPage`, `HVACBusiness`/`LocalBusiness`
-(telefone, `areaServed` das 5 cidades e um catálogo com 10 ofertas) e `FAQPage`
-com as 9 perguntas. Sem horário — ver o item 5 acima.
-As perguntas do `FAQPage` repetem **palavra por palavra** as que estão na tela —
-o Google exige isso, e divergir custa o rich result.
-
-**Desempenho** (Core Web Vitals)
-- **Zero recursos de terceiros.** As fontes Inter e Outfit são auto-hospedadas
-  (arquivos variáveis, subconjunto latino, 80 KB somados) e pré-carregadas.
-  A fonte do título é o maior elemento da primeira tela — ela não espera mais
-  DNS + TLS + download de outro domínio.
-- Ícones em SVG inline, uma folha de estilo, um script, nenhuma biblioteca.
-- `_headers` com cache longo e imutável para fontes, curto e revalidado para HTML.
-
-**Infraestrutura**
-`robots.txt`, `sitemap.xml`, `canonical`, `site.webmanifest`, 404 próprio
-com CTA, e cabeçalhos de segurança (`nosniff`, `X-Frame-Options`, HSTS,
-`Referrer-Policy`, `Permissions-Policy`).
-
-### O que dá mais resultado agora, e não é código
-
-1. **Perfil da Empresa no Google** (Google Business Profile). Para busca local,
-   isso pesa mais que a página inteira: é o que coloca a JMS no mapa e no bloco
-   de resultados locais. Ao criar, use o mesmo nome, telefone e endereço do site.
-2. **Endereço completo.** Hoje os dados estruturados têm só cidade/UF. Com rua,
-   número e CEP em `index.html` (`PostalAddress`), o `LocalBusiness` fica completo.
-3. **Avaliações reais** no perfil do Google e em `depoimentos[]`.
-4. **Instagram** preenchido no `config.js` — entra como `sameAs` no schema.
-5. **Domínio próprio.** `.workers.dev` funciona, mas um `jmsrefrigeracao.com.br`
-   é melhor para confiança e para o Google.
-
----
-
-## Estrutura
-
-```
-public/
-  index.html              a página inteira: conteúdo, SEO e dados estruturados
-  404.html                erro com CTA de WhatsApp
-  robots.txt  sitemap.xml  site.webmanifest
-  _headers                segurança e cache (lido pelo Cloudflare)
-  assets/
-    css/style.css         folha única: fontes → tokens → base → componentes → responsivo
-    js/config.js          ⬅ DADOS DO NEGÓCIO
-    js/main.js            CTAs, menu, FAQ, máscara, formulários, schema
-    fonts/*.woff2         Inter e Outfit auto-hospedadas
-    img/logo.svg          logo e favicon
-    img/og.png            imagem de compartilhamento (1200×630)
-```
-
-## Rodar localmente
+## Run locally
 
 ```bash
 npx wrangler dev
 ```
 
-Ou qualquer servidor estático apontando para `public/`
-(abrir o `index.html` pelo arquivo **não funciona** — os caminhos são absolutos).
+Any static server pointed at `public/` also works. Opening `index.html` straight from disk does not, because paths are absolute.
 
-## Publicar
+## Tests
+
+```bash
+npm test
+```
+
+`tests/checar-site.mjs` reads the files in `public/` without starting a server and checks that:
+
+1. canonical, Open Graph, Twitter, sitemap, robots and `config.js` all point to the same base URL, and so does every URL in the JSON-LD;
+2. the JSON-LD parses;
+3. the FAQPage questions match the questions on screen word for word and in order (Google requires it);
+4. every local file referenced by `index.html` and `404.html` exists;
+5. no public URL mentions a subdomain listed in `HOSTS_PROIBIDOS`.
+
+## Editing the business data
+
+`public/assets/js/config.js` is the only file to edit for business data. It feeds every WhatsApp link, the optional phone, e-mail and Instagram (empty means the line disappears), the list of served cities, the footer and the structured data.
+
+The city also appears directly in `index.html` (`<title>`, meta description, canonical, `og:`), because Google has to read it in the HTML. Change it in both places.
+
+To change the public address everywhere at once:
+
+```bash
+node ferramentas/trocar-dominio.mjs https://new-address
+npm test
+```
+
+Assets are loaded with a version in the URL (`style.css?v=20260917b`). When a CSS or JS change must show up immediately for returning visitors, bump `?v=` in `index.html` and `404.html`.
+
+## Folder structure
+
+```
+public/
+  index.html            the whole page: content, SEO and structured data
+  404.html              error page with a WhatsApp call to action
+  robots.txt  sitemap.xml  site.webmanifest
+  _headers              security and cache (read by Cloudflare)
+  assets/css/style.css  single stylesheet
+  assets/js/config.js   business data
+  assets/js/main.js     CTAs, menu, FAQ, input mask, forms, schema
+  assets/fonts/         Inter and Outfit
+  assets/img/           logo, favicon, share image
+ferramentas/            maintenance scripts (not served)
+tests/                  static checks (npm test)
+docs/                   roadmap, domain options, architecture
+```
+
+## Architecture
+
+See [docs/arquitetura/](docs/arquitetura/README.md): use cases (UML), process (BPMN) and containers (C4).
+
+## Decisions and known limits
+
+- No prices and no testimonials on the page on purpose. The testimonials section stays hidden until `depoimentos[]` has real reviews.
+- Opening hours were removed because they were never confirmed. They come back in `config.js` (`horario`) plus an `openingHoursSpecification` block in the JSON-LD.
+- The structured address has only city and state. A full `PostalAddress` needs the real street address.
+- The served cities list (`cidades[]`) is a public claim about coverage and must be confirmed by the business.
+- What would help local search most is not code: a Google Business Profile and a domain of its own.
+
+## Deploy
 
 ```bash
 npx wrangler deploy
 ```
 
-Conta Cloudflare: `ryzecode08@gmail.com`. Configuração em `wrangler.jsonc`.
+Run it through `cf.ps1` with the right account (see `docs/DOMINIO.md`). The project started on Cloudflare Pages, which is now part of Workers, so it is `wrangler deploy` and not `wrangler pages deploy`.
 
-> O projeto nasceu no Cloudflare Pages, que passou a fazer parte do Cloudflare
-> Workers — por isso `wrangler deploy`, e não `wrangler pages deploy`.
+## License
 
-## Domínio próprio
-
-Painel do Cloudflare → Workers & Pages → `jms-refrigeracao` → Domains & Routes.
-Depois de apontar, trocar a URL em quatro lugares: `site` no `config.js`, o
-`canonical` e as `og:`/`twitter:` no `index.html`, o `sitemap.xml` e o `robots.txt`.
+All rights reserved. The business name, texts and logo belong to the business.

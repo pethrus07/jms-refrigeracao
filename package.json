@@ -1,0 +1,9 @@
+{
+  "name": "jms-refrigeracao",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/checar-site.mjs",
+    "dev": "npx wrangler dev"
+  }
+}
