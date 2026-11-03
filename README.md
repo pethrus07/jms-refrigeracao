@@ -1,6 +1,6 @@
-[Português](README.pt-BR.md) | English
+# JMS Refrigeração e Gelo · site
 
-# JMS Refrigeração e Gelo · website
+English · [Português](README.pt-BR.md)
 
 One-page static website for a small refrigeration, air conditioning and ice delivery business in João Pessoa, Brazil. Every call to action opens WhatsApp with a ready-made message. There is no backend, no database and no build step.
 
@@ -11,9 +11,32 @@ Current address: https://jms-refrigeracao.desbravando-utv.workers.dev
 
 The `workers.dev` subdomain carries the name of another client's Cloudflare account. Moving it is planned: see [docs/DOMINIO.md](docs/DOMINIO.md) (in Portuguese) and [docs/ROADMAP.md](docs/ROADMAP.md).
 
-## The problem it solves
+## The problem
 
 The business gets orders by WhatsApp and needs to show up in local search. A contact form that sends e-mail would land in an inbox nobody reads. Here, all 34 action points on the page open a WhatsApp chat with a message that already says what the visitor wants ("I need flake ice", "my AC stopped"). The two forms build the message from name, phone and subject, and hand over the chat. Nothing is stored by the site.
+
+## Editing the business data
+
+`public/assets/js/config.js` is the only file to edit for business data. It feeds every WhatsApp link, the optional phone, e-mail and Instagram (empty means the line disappears), the list of served cities, the footer and the structured data.
+
+The city also appears directly in `index.html` (`<title>`, meta description, canonical, `og:`), because Google has to read it in the HTML. Change it in both places.
+
+To change the public address everywhere at once:
+
+```bash
+node ferramentas/trocar-dominio.mjs https://new-address
+npm test
+```
+
+Assets are loaded with a version in the URL (`style.css?v=20260917b`). When a CSS or JS change must show up immediately for returning visitors, bump `?v=` in `index.html` and `404.html`.
+
+## Deploy
+
+```bash
+npx wrangler deploy
+```
+
+Run it through `cf.ps1` with the right account (see `docs/DOMINIO.md`). The project started on Cloudflare Pages, which is now part of Workers, so it is `wrangler deploy` and not `wrangler pages deploy`.
 
 ## Stack
 
@@ -44,22 +67,7 @@ npm test
 4. every local file referenced by `index.html` and `404.html` exists;
 5. no public URL mentions a subdomain listed in `HOSTS_PROIBIDOS`.
 
-## Editing the business data
-
-`public/assets/js/config.js` is the only file to edit for business data. It feeds every WhatsApp link, the optional phone, e-mail and Instagram (empty means the line disappears), the list of served cities, the footer and the structured data.
-
-The city also appears directly in `index.html` (`<title>`, meta description, canonical, `og:`), because Google has to read it in the HTML. Change it in both places.
-
-To change the public address everywhere at once:
-
-```bash
-node ferramentas/trocar-dominio.mjs https://new-address
-npm test
-```
-
-Assets are loaded with a version in the URL (`style.css?v=20260917b`). When a CSS or JS change must show up immediately for returning visitors, bump `?v=` in `index.html` and `404.html`.
-
-## Folder structure
+## Folders
 
 ```
 public/
@@ -88,14 +96,6 @@ See [docs/arquitetura/](docs/arquitetura/README.md): use cases (UML), process (B
 - The structured address has only city and state. A full `PostalAddress` needs the real street address.
 - The served cities list (`cidades[]`) is a public claim about coverage and must be confirmed by the business.
 - What would help local search most is not code: a Google Business Profile and a domain of its own.
-
-## Deploy
-
-```bash
-npx wrangler deploy
-```
-
-Run it through `cf.ps1` with the right account (see `docs/DOMINIO.md`). The project started on Cloudflare Pages, which is now part of Workers, so it is `wrangler deploy` and not `wrangler pages deploy`.
 
 ## License
 
